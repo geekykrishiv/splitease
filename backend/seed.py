@@ -22,11 +22,11 @@ def seed():
 
     # Check if already seeded
     if db.query(User).count() > 0:
-        print("✅ Database already seeded!")
+        print("Database already seeded!")
         db.close()
         return
 
-    print("🌱 Seeding database...")
+    print("Seeding database...")
 
     # ── Users ──────────────────────────────────────────
     users_data = [
@@ -247,8 +247,8 @@ def seed():
 
     print(f"  Created {total_expenses} expenses")
     print(f"  Created 2 settlements")
-    print("✅ Database seeded successfully!")
-    print(f"\n📧 Login credentials:")
+    print("Database seeded successfully!")
+    print(f"\nLogin credentials:")
     for name, email, _ in users_data:
         print(f"   {name}: {email} / {DEFAULT_PASSWORD}")
 
