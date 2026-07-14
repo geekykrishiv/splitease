@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
 
 class ApiClient {
   constructor() {
@@ -183,7 +183,10 @@ class ApiClient {
 
   // WebSocket
   connectWebSocket(groupId, onMessage) {
-    const ws = new WebSocket(`ws://localhost:8000/ws/${groupId}`);
+    const wsUrl = API_BASE.startsWith('https')
+      ? `${API_BASE.replace(/^https/, 'wss')}/ws/${groupId}`
+      : `${API_BASE.replace(/^http/, 'ws')}/ws/${groupId}`;
+    const ws = new WebSocket(wsUrl);
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       onMessage(data);
