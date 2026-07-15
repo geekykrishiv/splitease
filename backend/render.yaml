@@ -2,9 +2,11 @@ services:
   - type: web
     name: splitease-api
     env: python
+    runtime: python3.11
     region: oregon
     plan: free
     rootDir: backend
+    entrypoint: main:app
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
